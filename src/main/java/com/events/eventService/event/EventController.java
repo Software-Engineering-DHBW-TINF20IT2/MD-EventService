@@ -9,6 +9,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "eventController")
 @Slf4j
+@CrossOrigin()
 public class EventController {
     private final EventService eventService;
 
