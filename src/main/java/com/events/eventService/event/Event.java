@@ -14,17 +14,17 @@ public class Event {
     String name;
     String discription;
     int location;
-    UserDTO creator;
+    String creatorId;
     LocalDateTime timestamp;
     LocalDateTime until;
 
     public Event(int id, String name, String discription, int location,
-                 UserDTO creator, LocalDateTime timestamp, LocalDateTime until) {
+                 String creatorId, LocalDateTime timestamp, LocalDateTime until) {
         this.id = id;
         this.name = name;
         this.discription = discription;
         this.location = location;
-        this.creator = creator;
+        this.creatorId = creatorId;
         this.timestamp = timestamp;
         this.until = until;
     }
@@ -65,12 +65,12 @@ public class Event {
         this.location = location;
     }
 
-    public UserDTO getCreator() {
-        return creator;
+    public String getCreatorId() {
+        return creatorId;
     }
 
-    public void setCreator(UserDTO creator) {
-        this.creator = creator;
+    public void setCreatorId(String creatorId) {
+        this.creatorId = creatorId;
     }
 
     public LocalDateTime getTimestamp() {
