@@ -2,8 +2,6 @@ package com.events.eventService.event;
 
 import javax.persistence.*;
 
-import com.events.eventService.UserDTO;
-
 import java.time.LocalDateTime;
 
 @Entity
