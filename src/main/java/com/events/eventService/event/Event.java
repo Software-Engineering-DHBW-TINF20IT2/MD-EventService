@@ -11,18 +11,18 @@ public class Event {
 
     String name;
     String discription;
-    long longituda;
+    long longitude;
     long latitude;
     String creatorId;
     LocalDateTime timestamp;
     LocalDateTime until;
 
-    public Event(int id, String name, String discription, long longituda, long latitude,
+    public Event(int id, String name, String discription, long longitude, long latitude,
                  String creatorId, LocalDateTime timestamp, LocalDateTime until) {
         this.id = id;
         this.name = name;
         this.discription = discription;
-        this.longituda = longituda;
+        this.longitude = longitude;
         this.latitude = latitude;
         this.creatorId = creatorId;
         this.timestamp = timestamp;
@@ -57,12 +57,12 @@ public class Event {
         this.discription = discription;
     }
 
-    public long getLongituda() {
-        return longituda;
+    public long getLongitude() {
+        return longitude;
     }
 
-    public void setLongituda(long longituda) {
-        this.longituda = longituda;
+    public void setLongitude(long longitude) {
+        this.longitude = longitude;
     }
 
     public long getLatitude() {

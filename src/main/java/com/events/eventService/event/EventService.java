@@ -39,7 +39,7 @@ public class EventService {
         Event existing = eventRepository.findEventById(event.getId());
         existing.setName(event.getName());
         existing.setDiscription(event.getDiscription());
-        existing.setLongituda(event.getLongituda());
+        existing.setLongitude(event.getLongitude());
         existing.setLatitude(event.getLatitude());
         existing.setCreatorId(event.getCreatorId());
         existing.setTimestamp(event.getTimestamp());
