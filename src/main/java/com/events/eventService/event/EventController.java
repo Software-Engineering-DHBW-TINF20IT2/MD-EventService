@@ -28,12 +28,12 @@ public class EventController {
     }
 
     @PostMapping
-    public Event postEvent(Event event){
+    public Event postEvent(@RequestBody Event event){
         return eventService.postEvent(event);
     }
 
     @PutMapping
-    public Event updateEvent(Event event){
+    public Event updateEvent(@RequestBody Event event){
         return eventService.updateEvent(event);
     }
 
