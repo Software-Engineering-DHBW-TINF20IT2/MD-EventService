@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 @Entity
 public class Event {
     @Id
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     int id;
 
     String name;
