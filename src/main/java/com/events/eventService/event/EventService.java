@@ -25,6 +25,15 @@ public class EventService {
         return eventRepository.findEventById(id);
     }
 
+    public List<Event> getEventByCreator(String creator){
+        return eventRepository.findEventsByCreator(creator);
+    }
+
+    public List<Event> getEvent(Eventtyp eventtyp){
+        //return eventRepository.findEventsByEventtyp(eventtyp);
+        return eventRepository.findEventsByEventtypEnumEquals(eventtyp);
+    }
+
     public Event postEvent(Event event) {
         Event dbEvent = eventRepository.findEventById(event.getId());
         if(dbEvent == null){
@@ -41,9 +50,11 @@ public class EventService {
         existing.setDiscription(event.getDiscription());
         existing.setLongitude(event.getLongitude());
         existing.setLatitude(event.getLatitude());
+        existing.setCreatorName(event.getCreatorName());
         existing.setCreatorId(event.getCreatorId());
         existing.setTimestamp(event.getTimestamp());
         existing.setUntil(event.getUntil());
+        existing.setEventtypEnum(event.getEventtypEnum());
         eventRepository.save(existing);
         return existing;
     }

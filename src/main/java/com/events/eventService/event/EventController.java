@@ -23,9 +23,19 @@ public class EventController {
         return eventService.getEvents();
     }
 
-    @GetMapping(path = "{id}")
+    @GetMapping(path = "/id/{id}")
     public Event getEvent(@PathVariable int id){
         return eventService.getEvent(id);
+    }
+
+    @GetMapping(path = "/creater/{createrID}")
+    public List<Event> getEventByCreator(@PathVariable String createrID){
+        return eventService.getEventByCreator(createrID);
+    }
+
+    @GetMapping(path = "/type/{eventtyp}")
+    public List<Event> getEventByTyp(@PathVariable Eventtyp eventtyp){
+        return eventService.getEvent(eventtyp);
     }
 
     @PostMapping
