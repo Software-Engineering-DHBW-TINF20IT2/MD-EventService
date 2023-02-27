@@ -4,7 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -29,8 +31,11 @@ public class EventService {
         return eventRepository.findEventsByCreator(creator);
     }
 
-    public List<Event> getEvent(Eventtyp eventtyp){
-        //return eventRepository.findEventsByEventtyp(eventtyp);
+    public List<String> getEventtyps() {
+        return Arrays.stream(Eventtyp.values()).map(Enum::name).collect(Collectors.toList());
+    }
+
+    public List<Event> getEventByTyp(Eventtyp eventtyp){
         return eventRepository.findEventsByEventtypEnumEquals(eventtyp);
     }
 
