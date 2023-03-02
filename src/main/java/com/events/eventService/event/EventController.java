@@ -28,7 +28,7 @@ public class EventController {
         return eventService.getEvent(id);
     }
 
-    @GetMapping(path = "/creater/{createrID}")
+    @GetMapping(path = "/creator/{createrID}")
     public List<Event> getEventByCreator(@PathVariable String createrID){
         return eventService.getEventByCreator(createrID);
     }
