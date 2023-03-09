@@ -1,13 +1,10 @@
 package com.events.eventService;
 
-import com.events.eventService.EventServiceApplication;
 import com.events.eventService.event.Event;
 import com.events.eventService.event.EventController;
 import com.events.eventService.event.Eventtyp;
 import org.junit.jupiter.api.*;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
@@ -15,23 +12,14 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
-public class TestEvent {
+public class EventsTest {
     private final EventController eventController;
 
     Event testEvent = new Event(-1, "Test", "zum Testen des Controllers",
@@ -41,7 +29,7 @@ public class TestEvent {
 
 
     @Autowired
-    public TestEvent(EventController eventController) {
+    public EventsTest(EventController eventController) {
         this.eventController = eventController;
     }
 
