@@ -1,11 +1,13 @@
-package com.events.Event.Service;
+package com.events.eventService;
 
 import com.events.eventService.EventServiceApplication;
 import com.events.eventService.event.Event;
 import com.events.eventService.event.EventController;
 import com.events.eventService.event.Eventtyp;
 import org.junit.jupiter.api.*;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
@@ -15,6 +17,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,7 +29,8 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(classes = EventServiceApplication.class)
+
+@SpringBootTest
 public class TestEvent {
     private final EventController eventController;
 
