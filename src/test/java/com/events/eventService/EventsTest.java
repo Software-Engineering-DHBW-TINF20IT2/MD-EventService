@@ -32,11 +32,6 @@ public class EventsTest {
         this.eventController = eventController;
     }
 
-    //@AfterEach
-    //void deleteTestData(){
-    //    eventController.deleteEvent();
-    //}
-
     @Test
     void testGet(){
         Event returnEvent = eventController.postEvent(testEvent);
