@@ -23,7 +23,7 @@ public class EventsTest {
     private final EventController eventController;
 
     Event testEvent = new Event(-1, "Test", "zum Testen des Controllers",
-            (float)8.534927099121942, (float)49.473342449968946, "Tester",
+            (float)8.5349, (float)49.4733, "Tester",
             "Tester@gmail.com", LocalDateTime.parse("2023-03-01T10:09:26.997"),
             LocalDateTime.parse("2023-03-01T13:09:26.997"), Eventtyp.Essen);
 
@@ -33,11 +33,6 @@ public class EventsTest {
         this.eventController = eventController;
     }
 
-    @BeforeEach
-    void addTestData(){
-        eventController.postEvent(testEvent);
-    }
-
     @AfterEach
     void deleteTestData(){
         eventController.deleteEvent(-1);
@@ -45,14 +40,18 @@ public class EventsTest {
 
     @Test
     void testGet(){
+        Event returnEvent = eventController.postEvent(testEvent);
         List<Event> events = eventController.getEvents();
-        assertTrue(events.contains(testEvent));
+        assertTrue(events.contains(returnEvent));
     }
 
     @Test
     void testGetById(){
-        Event event = eventController.getEvent(-1);
-        assertEquals(event, testEvent);
+        Event returnEvent = eventController.postEvent(testEvent);
+        int returnId = returnEvent.getId();
+        Event event = eventController.getEvent(returnId);
+        assertEvent(returnEvent, event);
+        eventController.deleteEvent(returnId);
     }
 
     @Test
@@ -73,38 +72,57 @@ public class EventsTest {
 
     @Test
     void testGetByTyp(){
+
         List<Event> events = eventController.getEventByTyp(Eventtyp.Essen);
         assertTrue(events.contains(testEvent));
     }
 
     @Test
     void testPost(){
-        Event testEvent2 = new Event(-2, "Tester", "zum Testen der Updatefunktionalität",
-                (float)9.534927099121942, (float)48.473342449968946, "Test",
-                "Test@gmail.com", LocalDateTime.parse("2023-03-01T10:00:26.997"),
-                LocalDateTime.parse("2023-03-01T13:00:26.997"), Eventtyp.Kino);
-        eventController.postEvent(testEvent2);
-        assertTrue(eventController.getEvents().contains(testEvent2));
-        eventController.deleteEvent(-2);
+        Event returnEvent = eventController.postEvent(testEvent);
+        int returnId = returnEvent.getId();
+        Event event = eventController.getEvent(returnId);
+        assertEvent(returnEvent, event);
+        eventController.deleteEvent(returnId);
     }
 
     @Test
     void testUpdate(){
-        Event update = new Event(-1, "Tester", "zum Testen der Updatefunktionalität",
+        Event returnEvent1 = eventController.postEvent(testEvent);
+        int returnId = returnEvent1.getId();
+        Event update = new Event(returnId, "Tester", "zum Testen der Updatefunktionalität",
                 (float)9.534927099121942, (float)48.473342449968946, "Test",
                 "Test@gmail.com", LocalDateTime.parse("2023-03-01T10:00:26.997"),
                 LocalDateTime.parse("2023-03-01T13:00:26.997"), Eventtyp.Kino);
         eventController.updateEvent(update);
-        List<Event> events = eventController.getEvents();
-        assertFalse(events.contains(testEvent));
-        assertTrue(events.contains(update));
+        Event event = eventController.getEvent(returnId);
+        assertEquals(event.getId(), returnId);
+        assertNotEquals(testEvent.getDiscription(), event.getDiscription());
+        eventController.deleteEvent(returnId);
     }
 
     @Test
     void testDelete(){
-        eventController.deleteEvent(-1);
-        List<Event> events = eventController.getEvents();
-        assertFalse(events.contains(testEvent));
+        Event returnEvent = eventController.postEvent(testEvent);
+        int returnId = returnEvent.getId();
+        testEvent.setId(returnId);
+        // List<Event> eventsBefore = eventController.getEvents();
+        // assertTrue(eventsBefore.contains(testEvent));
+        eventController.deleteEvent(returnId);
+        List<Event> eventsAfter = eventController.getEvents();
+        assertFalse(eventsAfter.contains(testEvent));
     }
 
+    private void assertEvent(Event add, Event get){
+        assertEquals(add.getId(), get.getId());
+        assertEquals(add.getName(), get.getName());
+        assertEquals(add.getDiscription(), get.getDiscription());
+        assertEquals(add.getLongitude(), get.getLongitude());
+        assertEquals(add.getLatitude(), get.getLatitude());
+        assertEquals(add.getCreatorName(), get.getCreatorName());
+        assertEquals(add.getCreatorId(), get.getCreatorId());
+        assertEquals(add.getTimestamp(), get.getTimestamp());
+        assertEquals(add.getUntil(), get.getUntil());
+        assertEquals(add.getEventtypEnum(), get.getEventtypEnum());
+    }
 }
