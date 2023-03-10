@@ -43,6 +43,7 @@ public class EventsTest {
         Event returnEvent = eventController.postEvent(testEvent);
         List<Event> events = eventController.getEvents();
         assertTrue(events.contains(returnEvent));
+        eventController.deleteEvent(returnEvent.getId(););
     }
 
     @Test
@@ -56,8 +57,11 @@ public class EventsTest {
 
     @Test
     void testGetByCreator(){
+        Event returnEvent = eventController.postEvent(testEvent);
+        int returnId = returnEvent.getId();
         List<Event> events = eventController.getEventByCreator("Tester@gmail.com");
         assertTrue(events.contains(testEvent));
+        eventController.deleteEvent(returnId);
     }
 
     @Test
@@ -72,9 +76,11 @@ public class EventsTest {
 
     @Test
     void testGetByTyp(){
-
+        Event returnEvent = eventController.postEvent(testEvent);
+        int returnId = returnEvent.getId();
         List<Event> events = eventController.getEventByTyp(Eventtyp.Essen);
         assertTrue(events.contains(testEvent));
+        eventController.deleteEvent(returnId);
     }
 
     @Test
