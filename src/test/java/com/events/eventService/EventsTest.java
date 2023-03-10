@@ -3,17 +3,16 @@ package com.events.eventService;
 import com.events.eventService.event.Event;
 import com.events.eventService.event.EventController;
 import com.events.eventService.event.Eventtyp;
-import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,17 +32,17 @@ public class EventsTest {
         this.eventController = eventController;
     }
 
-    @AfterEach
-    void deleteTestData(){
-        eventController.deleteEvent(-1);
-    }
+    //@AfterEach
+    //void deleteTestData(){
+    //    eventController.deleteEvent();
+    //}
 
     @Test
     void testGet(){
         Event returnEvent = eventController.postEvent(testEvent);
         List<Event> events = eventController.getEvents();
-        assertTrue(events.contains(returnEvent));
-        eventController.deleteEvent(returnEvent.getId(););
+        assertTrue(contains(events, returnEvent));
+        eventController.deleteEvent(returnEvent.getId());
     }
 
     @Test
@@ -60,7 +59,8 @@ public class EventsTest {
         Event returnEvent = eventController.postEvent(testEvent);
         int returnId = returnEvent.getId();
         List<Event> events = eventController.getEventByCreator("Tester@gmail.com");
-        assertTrue(events.contains(testEvent));
+        testEvent.setId(returnId);
+        assertTrue(contains(events, testEvent));
         eventController.deleteEvent(returnId);
     }
 
@@ -78,8 +78,9 @@ public class EventsTest {
     void testGetByTyp(){
         Event returnEvent = eventController.postEvent(testEvent);
         int returnId = returnEvent.getId();
+        testEvent.setId(returnId);
         List<Event> events = eventController.getEventByTyp(Eventtyp.Essen);
-        assertTrue(events.contains(testEvent));
+        assertTrue(contains(events, testEvent));
         eventController.deleteEvent(returnId);
     }
 
@@ -112,11 +113,11 @@ public class EventsTest {
         Event returnEvent = eventController.postEvent(testEvent);
         int returnId = returnEvent.getId();
         testEvent.setId(returnId);
-        // List<Event> eventsBefore = eventController.getEvents();
-        // assertTrue(eventsBefore.contains(testEvent));
+        List<Event> eventsBefore = eventController.getEvents();
+        assertTrue(contains(eventsBefore, returnEvent));
         eventController.deleteEvent(returnId);
         List<Event> eventsAfter = eventController.getEvents();
-        assertFalse(eventsAfter.contains(testEvent));
+        assertFalse(contains(eventsAfter, returnEvent));
     }
 
     private void assertEvent(Event add, Event get){
@@ -130,5 +131,29 @@ public class EventsTest {
         assertEquals(add.getTimestamp(), get.getTimestamp());
         assertEquals(add.getUntil(), get.getUntil());
         assertEquals(add.getEventtypEnum(), get.getEventtypEnum());
+    }
+
+
+    private boolean contains(List<Event> events, Event event){
+        int i = 0;
+        boolean found = false;
+        while(i < events.size()) {
+            if(event.getId() == events.get(i).getId() &&
+                    Objects.equals(event.getName(), events.get(i).getName()) &&
+                    Objects.equals(event.getName(), events.get(i).getName())&&
+                    Objects.equals(event.getDiscription(), events.get(i).getDiscription())&&
+                    event.getLongitude() == events.get(i).getLongitude() &&
+                    event.getLatitude() == events.get(i).getLatitude() &&
+                    Objects.equals(event.getCreatorName(), events.get(i).getCreatorName()) &&
+                    Objects.equals(event.getCreatorId(), events.get(i).getCreatorId()) &&
+                    event.getTimestamp().equals(events.get(i).getTimestamp()) &&
+                    event.getUntil().equals(events.get(i).getUntil()) &&
+                    event.getEventtypEnum() == events.get(i).getEventtypEnum()){
+                found = true;
+                break;
+            }
+            i++;
+        }
+        return found;
     }
 }
