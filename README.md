@@ -4,7 +4,7 @@ Die Abfragen finden auf den Pfad "/eventController" statt.
 - getEvents  
     Funktion: Erhalt von allen Events der Datenbank  
     Übergabewert: n/a  
-    Rückgabewert: List<Event>  
+    Rückgabewert: Event List  
 - getEvent  
     Funktion: Raussuchen eines bestimmten Events eines Users  
     Übergabewert: Integer Eventid  
@@ -12,15 +12,15 @@ Die Abfragen finden auf den Pfad "/eventController" statt.
 - getEventByCreator  
     Funktion: Raussuchen aller Events, die von einem User erstellt wurden  
     Übergabewert: String UserID  
-    Rückgabewert: List<Event>  
+    Rückgabewert: Event List 
 - getEventtyps  
     Funktion: Erhalt von allen Auswahlmöglichkeiten für den Eventtyp  
     Übergabewert: n/a  
-    Rückgabewert: List<String> (mit allen Auswahlmöglichkeiten des Enums)  
+    Rückgabewert: String List (mit allen Auswahlmöglichkeiten des Enums)  
 - getEventByTyp  
     Funktion: Raussuchen aller Event eines bestimmten Eventtyps  
     Übergabewert: Eventtyp (aus dem Eventtyp.enum)  
-    Rückgabewert: List<Events>  
+    Rückgabewert: Event List   
 - postEvent  
     Funktion: Hinzufügen eines Events  
     Übergabewert: Event  
