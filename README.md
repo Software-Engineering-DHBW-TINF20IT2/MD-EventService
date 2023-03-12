@@ -1,4 +1,5 @@
 # EventService
+Die Abfragen finden auf den Pfad "/eventController" statt. 
 
 - getEvents  
     Funktion: Erhalt von allen Events der Datenbank  
