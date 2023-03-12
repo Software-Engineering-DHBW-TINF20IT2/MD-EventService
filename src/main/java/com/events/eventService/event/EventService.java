@@ -18,27 +18,34 @@ public class EventService {
         this.eventRepository = eventRepository;
     }
 
-
+    // Funktion zum Abfragen von allen Events aus der Datenbank
     public List<Event> getEvents() {
         return eventRepository.findAll();
     }
 
+    // Funktion zum Abfragen von bestimmten Events über deren ID
     public Event getEvent(int id) {
         return eventRepository.findEventById(id);
     }
 
+    // Funktion zum Abfragen von allen Events eines Nutzers
     public List<Event> getEventByCreator(String creator){
         return eventRepository.findEventsByCreator(creator);
     }
 
+    // Funktion zum Abfragen von allen möglichen Eventtypen
     public List<String> getEventtyps() {
         return Arrays.stream(Eventtyp.values()).map(Enum::name).collect(Collectors.toList());
     }
 
+    // Funktion zum Abfragen von allen Events eines bestimmten Eventtyps
     public List<Event> getEventByTyp(Eventtyp eventtyp){
         return eventRepository.findEventsByEventtypEnumEquals(eventtyp);
     }
 
+    /* Funktion zum Hinzufügen eines Events in die DB.
+    Überprüft, ob das Event bereits in der DB ist. Wenn das Event noch nicht vorhanden ist, wird es hinzugefügt.
+     */
     public Event postEvent(Event event) {
         Event dbEvent = eventRepository.findEventById(event.getId());
         if(dbEvent == null){
@@ -49,6 +56,10 @@ public class EventService {
         }
     }
 
+    /* Funktion zum Aktualisieren eines Events in der DB.
+    Dafür wird erst das Objekt aus der Datenbank abgefragt, sämtliche Daten auf die neuen Daten aktualisiert und
+    dann das Objekt wieder in die Datenbank gespeichert.
+     */
     public Event updateEvent(Event event) {
         Event existing = eventRepository.findEventById(event.getId());
         existing.setName(event.getName());
@@ -64,6 +75,7 @@ public class EventService {
         return existing;
     }
 
+    // Funktion zum Löschen eines Events aus der DB.
     public void deleteEvent(int id) {
         eventRepository.deleteEvent(id);
     }
