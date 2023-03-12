@@ -1,26 +1,34 @@
 # EventService
 
-- getEvents()
+- getEvents
+    Funktion: Erhalt von allen Events der Datenbank
     Übergabewert: n/a
-    Rückgabewert: List<Event> mit allen Events der Datenbank
-- getEvent(id)
-    Übergabewert: Integer id des zu suchenden Event-Objektes
+    Rückgabewert: List<Event>
+- getEvent
+    Funktion: Raussuchen eines bestimmten Events eines Users
+    Übergabewert: Integer Eventid
     Rückgabewert: Event
 - getEventByCreator
-    Übergabewert: String ID des Users dessen Events angezeigt werden sollen
-    Rückgabewert: List<Event> mit allen Events von dem User
+    Funktion: Raussuchen aller Events, die von einem User erstellt wurden
+    Übergabewert: String UserID
+    Rückgabewert: List<Event>
 - getEventtyps
+    Funktion: Erhalt von allen Auswahlmöglichkeiten für den Eventtyp
     Übergabewert: n/a
-    Rückgabewert: List<String> mit allen Auswahlmöglichkeiten des Enums
+    Rückgabewert: List<String> (mit allen Auswahlmöglichkeiten des Enums)
 - getEventByTyp
-    Übergabewert: Eventtyp aus dem Eventtyp.enum zu dem alle Events gesucht werden sollen
-    Rückgabewert: List<Events> welche alle Events eines Events beinhaltet
+    Funktion: Raussuchen aller Event eines bestimmten Eventtyps
+    Übergabewert: Eventtyp (aus dem Eventtyp.enum)
+    Rückgabewert: List<Events>
 - postEvent
-    Übergabewert: Event mit den hinzuzufügenden Daten
+    Funktion: Hinzufügen eines Events
+    Übergabewert: Event
     Rückgabewert: Event (mit der neuen generierten Event-Objekt ID)
 - updateEvent
-    Übergabewert: Event mit den zu löschenden Daten
+    Funktion: Aktualisieren der Daten eines Events
+    Übergabewert: Event (mit den neuen Daten)
     Rückgabewert: Event
 - deleteEvent
-    Übergabewert: Integer id des zu löschenden Event-Objektes
+    Funktion: Löschen eines Events aus der Datenbank
+    Übergabewert: Integer EventId
     Rückgabewert: n/a
