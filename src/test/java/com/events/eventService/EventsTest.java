@@ -2,6 +2,7 @@ package com.events.eventService;
 
 import com.events.eventService.event.Event;
 import com.events.eventService.event.EventController;
+import com.events.eventService.event.EventRepository;
 import com.events.eventService.event.Eventtyp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class EventsTest {
     private final EventController eventController;
+    private final EventRepository eventRepository;
 
     /**
      * testEvent und testEvent2 sind zwei testEvents um nachfolgend die Tests durchzuführen
@@ -34,8 +36,9 @@ public class EventsTest {
             LocalDateTime.parse("2023-03-01T13:00:26.997"), Eventtyp.Kino);
 
     @Autowired
-    public EventsTest(EventController eventController) {
+    public EventsTest(EventController eventController, EventRepository eventRepository) {
         this.eventController = eventController;
+        this.eventRepository = eventRepository;
     }
 
     /**
@@ -43,10 +46,10 @@ public class EventsTest {
      */
     @Test
     void testGet(){
-        Event returnEvent = eventController.postEvent(testEvent);
+        Event returnEvent = eventRepository.save(testEvent);
         List<Event> events = eventController.getEvents();
         assertTrue(contains(events, returnEvent));
-        eventController.deleteEvent(returnEvent.getId());
+        eventRepository.deleteEvent(returnEvent.getId());
     }
 
     /**
@@ -55,11 +58,11 @@ public class EventsTest {
      */
     @Test
     void testGetById(){
-        Event returnEvent = eventController.postEvent(testEvent);
+        Event returnEvent = eventRepository.save(testEvent);
         int returnId = returnEvent.getId();
         Event event = eventController.getEvent(returnId);
         assertEvent(returnEvent, event);
-        eventController.deleteEvent(returnId);
+        eventRepository.deleteEvent(returnId);
     }
 
     /**
@@ -69,17 +72,17 @@ public class EventsTest {
      */
     @Test
     void testGetByCreator(){
-        Event returnEvent1 = eventController.postEvent(testEvent);
+        Event returnEvent1 = eventRepository.save(testEvent);
         int returnId1 = returnEvent1.getId();
-        Event returnEvent2 = eventController.postEvent(testEvent2);
+        Event returnEvent2 = eventRepository.save(testEvent2);
         int returnId2 = returnEvent2.getId();
         List<Event> events = eventController.getEventByCreator("Tester@gmail.com");
         testEvent.setId(returnId1);
         assertTrue(contains(events, testEvent));
         testEvent2.setId(returnId2);
         assertFalse(contains(events, testEvent2));
-        eventController.deleteEvent(returnId1);
-        eventController.deleteEvent(returnId2);
+        eventRepository.deleteEvent(returnId1);
+        eventRepository.deleteEvent(returnId2);
     }
 
     /**
@@ -103,9 +106,9 @@ public class EventsTest {
      */
     @Test
     void testGetByTyp(){
-        Event returnEvent1 = eventController.postEvent(testEvent);
+        Event returnEvent1 = eventRepository.save(testEvent);
         int returnId1 = returnEvent1.getId();
-        Event returnEvent2 = eventController.postEvent(testEvent2);
+        Event returnEvent2 = eventRepository.save(testEvent2);
         int returnId2 = returnEvent2.getId();
         testEvent.setId(returnId1);
         List<Event> events = eventController.getEventByTyp(Eventtyp.Essen);
@@ -118,8 +121,8 @@ public class EventsTest {
             }
         }
         assertTrue(correctListEventtyps);
-        eventController.deleteEvent(returnId1);
-        eventController.deleteEvent(returnId2);
+        eventRepository.deleteEvent(returnId1);
+        eventRepository.deleteEvent(returnId2);
     }
 
     /**
@@ -130,9 +133,9 @@ public class EventsTest {
     void testPost(){
         Event returnEvent = eventController.postEvent(testEvent);
         int returnId = returnEvent.getId();
-        Event event = eventController.getEvent(returnId);
+        Event event = eventRepository.findEventById(returnId);
         assertEvent(returnEvent, event);
-        eventController.deleteEvent(returnId);
+        eventRepository.deleteEvent(returnId);
     }
 
     /**
@@ -142,14 +145,14 @@ public class EventsTest {
      */
     @Test
     void testUpdate(){
-        Event returnEvent1 = eventController.postEvent(testEvent);
-        int returnId = returnEvent1.getId();
+        Event returnEvent = eventRepository.save(testEvent);
+        int returnId = returnEvent.getId();
         testEvent2.setId(returnId);
         eventController.updateEvent(testEvent2);
-        Event event = eventController.getEvent(returnId);
+        Event event = eventRepository.findEventById(returnId);
         assertEquals(event.getId(), returnId);
         assertNotEquals(testEvent.getDiscription(), event.getDiscription());
-        eventController.deleteEvent(returnId);
+        eventRepository.deleteEvent(returnId);
     }
 
     /**
@@ -160,13 +163,13 @@ public class EventsTest {
      */
     @Test
     void testDelete(){
-        Event returnEvent = eventController.postEvent(testEvent);
+        Event returnEvent = eventRepository.save(testEvent);
         int returnId = returnEvent.getId();
         testEvent.setId(returnId);
-        List<Event> eventsBefore = eventController.getEvents();
+        List<Event> eventsBefore = eventRepository.findAll();
         assertTrue(contains(eventsBefore, returnEvent));
         eventController.deleteEvent(returnId);
-        List<Event> eventsAfter = eventController.getEvents();
+        List<Event> eventsAfter = eventRepository.findAll();
         assertFalse(contains(eventsAfter, returnEvent));
     }
 
