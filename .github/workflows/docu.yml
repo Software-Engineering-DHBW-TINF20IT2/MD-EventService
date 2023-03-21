@@ -20,7 +20,7 @@ jobs:
             run: |
               mkdir ./docu
               cd ./docu
-              javadoc ./../src/main/java/com/userService/userService/*.java
+              javadoc ./../src/main/java/com/events/eventService//*.java
           - name: Upload documentation
             uses: actions/upload-artifact@v2
             with:
