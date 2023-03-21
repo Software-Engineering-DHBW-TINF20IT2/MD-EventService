@@ -21,7 +21,7 @@ public class EventController {
     /**
      * Schnittstelle zum Abfragen von allen Events aus der Datenbank
      *
-     * @return List<Event> mit allen Events die in der Datenbank vorhanden sind
+     * @return List of Event mit allen Events die in der Datenbank vorhanden sind
      */
     @GetMapping
     public List<Event> getEvents(){
@@ -45,7 +45,7 @@ public class EventController {
      *
      * @param createrID mit der userID des Nutzers, der das Event angelegt hat
      *
-     * @return List<Event> mit allen Events die von diesem User angelegt wurden
+     * @return List of Event mit allen Events die von diesem User angelegt wurden
      */
     @GetMapping(path = "/creator/{createrID}")
     public List<Event> getEventByCreator(@PathVariable String createrID){
@@ -55,7 +55,7 @@ public class EventController {
     /**
      * Schnittstelle zum Abfragen von allen möglichen Eventtypen
      *
-     * @return List<String> mit allen Auswahlmöglichkeiten des Enums
+     * @return List of String mit allen Auswahlmöglichkeiten des Enums
      */
     @GetMapping(path = "/type")
     public List<String> getEventtyps(){
@@ -67,7 +67,7 @@ public class EventController {
      *
      * @param eventtyp mit dem gesuchten Eventtyp
      *
-     * @return List<Event> mit allen Events des gewünschten Typs
+     * @return List of Event mit allen Events des gewünschten Typs
      */
     @GetMapping(path = "/type/{eventtyp}")
     public List<Event> getEventByTyp(@PathVariable Eventtyp eventtyp){

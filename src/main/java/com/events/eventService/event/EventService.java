@@ -21,7 +21,7 @@ public class EventService {
     /**
      * Funktion zum Abfragen von allen Events aus der Datenbank
      *
-     * @return List<Event> mit allen Events die in der Datenbank vorhanden sind
+     * @return List of Event mit allen Events die in der Datenbank vorhanden sind
      */
     public List<Event> getEvents() {
         return eventRepository.findAll();
@@ -43,7 +43,7 @@ public class EventService {
      *
      * @param creator mit der userID des Nutzers, der das Event angelegt hat
      *
-     * @return List<Event> mit allen Events die von diesem User angelegt wurden
+     * @return List of Event mit allen Events die von diesem User angelegt wurden
      */
     public List<Event> getEventByCreator(String creator){
         return eventRepository.findEventsByCreator(creator);
@@ -52,7 +52,7 @@ public class EventService {
     /**
      * Funktion zum Abfragen von allen möglichen Eventtypen
      *
-     * @return List<String> mit allen Auswahlmöglichkeiten des Enums
+     * @return List of String mit allen Auswahlmöglichkeiten des Enums
      */
     public List<String> getEventtyps() {
         return Arrays.stream(Eventtyp.values()).map(Enum::name).collect(Collectors.toList());
@@ -63,7 +63,7 @@ public class EventService {
      *
      * @param eventtyp mit dem gesuchten Eventtyp
      *
-     * @return List<Event> mit allen Events des gewünschten Typs
+     * @return List of Event mit allen Events des gewünschten Typs
      */
     public List<Event> getEventByTyp(Eventtyp eventtyp){
         return eventRepository.findEventsByEventtypEnumEquals(eventtyp);
