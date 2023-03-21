@@ -1,0 +1,28 @@
+name: Build Docu
+on: [push]
+
+jobs:
+    docu:
+        name: Document Service
+        runs-on: ubuntu-latest
+
+        steps: 
+          - name: Checkout repository content
+            uses: actions/checkout@v2
+
+          - name: Setup Java
+            uses: actions/setup-java@v3
+            with:
+              distribution: 'temurin' # See 'Supported distributions' for available options
+              java-version: '17'
+
+          - name: Build documentation
+            run: |
+              mkdir ./docu
+              cd ./docu
+              javadoc ./../src/main/java/com/userService/userService/*.java
+          - name: Upload documentation
+            uses: actions/upload-artifact@v2
+            with:
+              name: docu
+              path: ./docu
