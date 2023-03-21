@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Der EventController ist eine Klasse, die die Geschäftslogik für das Event-Management steuert.
+ * Diese Klasse ist für die Verwaltung von Event-Objekten zuständig.
+ */
 @RestController
 @RequestMapping(path = "eventController")
 @Slf4j
@@ -13,6 +17,11 @@ import java.util.List;
 public class EventController {
     private final EventService eventService;
 
+
+    /**
+     * Konstruktor für den EventController.
+     * @param eventService Das EventService-Objekt, das für die Verwaltung der Event-Objekte verwendet wird.
+     */
     @Autowired
     public EventController(EventService eventService){
         this.eventService = eventService;

@@ -8,11 +8,22 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Der EventService ist ein Service, der die Geschäftslogik für die Verwaltung von Events enthält.
+ * Diese Klasse bietet verschiedene Methoden für die Verwaltung von Events an, wie z.B. das Erstellen, Lesen, Aktualisieren und Löschen von Events.
+ */
 @Service
 @Slf4j
 public class EventService {
+    /**
+     * Das EventRepository, das für den Zugriff auf die Datenbank verwendet wird.
+     */
     private final EventRepository eventRepository;
 
+    /**
+     * Konstruktor für den EventService.
+     * @param eventRepository Das EventRepository, das für den Zugriff auf die Datenbank verwendet wird.
+     */
     @Autowired
     public EventService(EventRepository eventRepository) {
         this.eventRepository = eventRepository;

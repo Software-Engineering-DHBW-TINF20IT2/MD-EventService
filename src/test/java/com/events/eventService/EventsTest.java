@@ -18,13 +18,24 @@ import java.util.Objects;
 import static org.junit.jupiter.api.Assertions.*;
 
 
+/**
+ * Die EventsTest-Klasse ist eine JUnit-Testklasse, die verschiedene Tests für die Event-Verwaltung durchführt.
+ * Diese Klasse testet die Funktionalität des EventControllers und des EventRepositorys.
+ */
 @SpringBootTest
 public class EventsTest {
+    /**
+     * Der EventController, der für die Tests verwendet wird.
+     */
     private final EventController eventController;
+
+    /**
+     * Das EventRepository, das für die Tests verwendet wird.
+     */
     private final EventRepository eventRepository;
 
     /**
-     * testEvent und testEvent2 sind zwei testEvents um nachfolgend die Tests durchzuführen
+     * testEvent und testEvent2 sind zwei testEvents, die für die Tests verwendet werden.
      */
     Event testEvent = new Event(-1, "Test", "zum Testen des Controllers",
             (float)8.5349, (float)49.4733, "Tester",
@@ -35,6 +46,11 @@ public class EventsTest {
             "Test@gmail.com", LocalDateTime.parse("2023-03-01T10:00:26.997"),
             LocalDateTime.parse("2023-03-01T13:00:26.997"), Eventtyp.Kino);
 
+    /**
+     * Konstruktor für den EventsTest.
+     * @param eventController Der EventController, der für die Tests verwendet wird.
+     * @param eventRepository Das EventRepository, das für die Tests verwendet wird.
+     */
     @Autowired
     public EventsTest(EventController eventController, EventRepository eventRepository) {
         this.eventController = eventController;
