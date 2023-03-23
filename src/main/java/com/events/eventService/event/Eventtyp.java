@@ -2,13 +2,13 @@ package com.events.eventService.event;
 
 /**
  * Der Eventtyp ist eine Aufzählung, die die verschiedenen Arten von Events darstellt.
- * Diese Aufzählung enthält die Werte 'Saufen', 'Kino' und 'Essen'.
+ * Diese Aufzählung enthält die Werte 'Trinken', 'Kino' und 'Essen'.
  */
 public enum Eventtyp {
     /**
-     * Der Eventtyp für das Saufen.
+     * Der Eventtyp für das Trinken.
      */
-    Saufen,
+    Trinken,
 
     /**
      * Der Eventtyp für das Kino.
