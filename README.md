@@ -1,7 +1,7 @@
 # EventService
 ## Beschreibung
 
-Dieses Repository bietet das Backend der Eventfunktionen. Das Frontend dazu findet sich hier. 
+Dieses Repository bietet das Backend der Eventfunktionen. 
 Der Nutzen ist dabei, dass Events abgefragt, hinzugefügt, bearbeitet und gelöscht werden können.
 
 ### Verfügbare Endpoints
