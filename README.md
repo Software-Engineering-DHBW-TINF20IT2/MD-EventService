@@ -40,7 +40,7 @@ Der Nutzen ist dabei, dass Events abgefragt, hinzugefügt, bearbeitet und gelös
 
 ## Technische Details
 
-Datenbank
+### Datenbank
 
 Die in dem EventService verwendete Datenbank ist eine in der Azure Cloud gehostete MySQL Datenbank. Diese wird ausschließlich durch das Backend und dessen Service adressiert. Die Tabellen werden durch Hibernate automatisch erstellt, sodass die Objekte ohne Fehler in der DB übertragen wurden.
 
