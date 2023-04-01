@@ -24,10 +24,10 @@ public interface EventRepository extends JpaRepository<Event, Integer>{
 
     /**
      * Sucht nach Events, die von einem bestimmten Benutzer erstellt wurden.
-     * @param creator Der Benutzername des Erstellers der Events, die gesucht werden sollen.
+     * @param creatorId Der Benutzername des Erstellers der Events, die gesucht werden sollen.
      * @return Eine Liste von Event-Objekten, die von dem angegebenen Benutzer erstellt wurden.
      */
-    List<Event> findEventsByCreator(String creator);
+    List<Event> findEventsByCreatorId(String creatorId);
 
     /**
      * Sucht nach Events, die einem bestimmten Eventtyp zugeordnet sind.

@@ -57,7 +57,7 @@ public class EventService {
      * @return List of Event mit allen Events die von diesem User angelegt wurden
      */
     public List<Event> getEventByCreator(String creator){
-        return eventRepository.findEventsByCreator(creator);
+        return eventRepository.findEventsByCreatorId(creator);
     }
 
     /**
